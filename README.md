@@ -2,7 +2,7 @@
 
 A dollar-cost-averaging calculator that shows what a follow-up purchase does to your cost basis.
 
-**Live:** https://officinaprima.github.io/average-down-calculator/
+**Live:** https://officinaprima.github.io/dca/
 
 Enter your current position once — shares held, original average price, current market price — then pick how you want to think about the next buy:
 
@@ -31,8 +31,8 @@ Everything runs in your browser. There is no backend, no database, no analytics,
 Requires [Node.js](https://nodejs.org/) 20 or newer.
 
 ```bash
-git clone https://github.com/OfficinaPrima/average-down-calculator.git
-cd average-down-calculator
+git clone https://github.com/OfficinaPrima/dca.git
+cd dca
 npm install
 npm run dev
 ```

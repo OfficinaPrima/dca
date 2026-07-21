@@ -7,9 +7,9 @@ import { fileURLToPath } from "node:url";
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(({ command }) => ({
-  // GitHub Pages serves this repo under /average-down-calculator/, so built
-  // asset URLs need that prefix. The dev server serves from the root.
-  base: command === "build" ? "/average-down-calculator/" : "/",
+  // GitHub Pages serves this repo under /dca/, so built asset URLs need that
+  // prefix. The dev server serves from the root.
+  base: command === "build" ? "/dca/" : "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

@@ -31,4 +31,4 @@ fi
 
 git -C "$WORKTREE" commit -m "Deploy built site to GitHub Pages"
 git -C "$WORKTREE" push origin gh-pages
-echo "Deployed: https://officinaprima.github.io/average-down-calculator/"
+echo "Deployed: https://officinaprima.github.io/dca/"
