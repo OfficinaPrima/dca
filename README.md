@@ -45,6 +45,17 @@ Then open the URL it prints (usually http://localhost:5173).
 | `npm run build` | type-check, then build to `dist/` |
 | `npm run preview` | serve the built output locally |
 | `npm run typecheck` | type-check only |
+| `npm run deploy` | build and publish to the live site |
+
+## Deploying
+
+The live site is served from the `gh-pages` branch. After committing a change to `main`:
+
+```bash
+npm run deploy
+```
+
+That builds the site, pushes the result to `gh-pages`, and GitHub Pages picks it up within a minute or so.
 
 ## How it's built
 
