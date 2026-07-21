@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-background: hsl(210 40% 98%); /* Slate 50 */
+  --color-foreground: hsl(222 47% 11%); /* Slate 900 */
+  
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222 47% 11%);
+  
+  --color-primary: hsl(236 82% 58%); /* Indigo 600 */
+  --color-primary-foreground: hsl(0 0% 100%);
+  
+  --color-secondary: hsl(214 32% 91%); /* Slate 200 */
+  --color-secondary-foreground: hsl(222 47% 11%);
+  
+  --color-muted: hsl(210 40% 96%); /* Slate 100 */
+  --color-muted-foreground: hsl(215 16% 47%); /* Slate 500 */
+  
+  --color-accent: hsl(210 40% 96%);
+  --color-accent-foreground: hsl(222 47% 11%);
+  
+  --color-destructive: hsl(0 84% 60%); /* Red 500 */
+  --color-destructive-foreground: hsl(210 40% 98%);
+  
+  --color-warning: hsl(38 92% 50%); /* Amber 500 */
+  --color-warning-foreground: hsl(48 96% 89%); 
+  
+  --color-border: hsl(214 32% 91%); /* Slate 200 */
+  --color-input: hsl(214 32% 91%);
+  --color-ring: hsl(236 82% 58%);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased font-sans selection:bg-primary/20 selection:text-primary;
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(236, 82%, 58%, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(236, 82%, 58%, 0.03) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+/* Hide number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
