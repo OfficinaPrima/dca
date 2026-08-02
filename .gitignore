@@ -7,3 +7,6 @@ dist/
 !.env.example
 *.log
 .vite/
+
+# Never commit archives (e.g. the original Replit export) — too big for GitHub.
+*.zip

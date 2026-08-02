@@ -5,6 +5,7 @@ import { NumberInput } from "@/components/ui/number-input";
 import { formatCurrency, formatNumber, parseNum, cn } from "@/lib/utils";
 import { WarningBanner } from "@/components/calculator/warning-banner";
 import { ResultCard } from "@/components/calculator/result-card";
+import { CoinSearch } from "@/components/calculator/coin-search";
 
 type TabId = "target" | "budget" | "custom";
 
@@ -193,6 +194,7 @@ export function Calculator() {
           
           {/* Top Shared Inputs Section */}
           <div className="p-6 sm:p-8 border-b border-slate-100 bg-slate-50/50">
+            <CoinSearch onPriceUpdate={(p) => setBuyPrice(String(p))} />
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <NumberInput
                 label="Current Shares"
