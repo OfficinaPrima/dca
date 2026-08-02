@@ -182,7 +182,7 @@ export function Calculator() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white shadow-lg shadow-primary/10 mb-6 border border-slate-100">
             <CalculatorIcon className="w-8 h-8 text-primary" />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-slate-900 mb-3 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 mb-3 tracking-tight">
             DCA Calculator
           </h1>
           <p className="text-lg text-slate-500 max-w-lg">

@@ -25,7 +25,7 @@ export function ResultCard({ title, value, subtitle, isError }: ResultCardProps)
         {title}
       </h3>
       
-      <div className={`text-4xl sm:text-5xl font-mono font-bold tracking-tight ${isError ? "text-red-600 text-2xl sm:text-3xl font-sans" : "text-white"}`}>
+      <div className={`text-2xl sm:text-3xl font-mono font-bold tracking-tight break-words [overflow-wrap:anywhere] ${isError ? "text-red-600 text-xl sm:text-2xl font-sans" : "text-white"}`}>
         {value}
       </div>
       
