@@ -11,14 +11,14 @@ export function formatCurrency(value: number | null): string {
     style: "currency",
     currency: "USD",
     minimumFractionDigits: 2,
-    maximumFractionDigits: 6,
+    maximumFractionDigits: 5,
   }).format(value);
 }
 
 export function formatNumber(value: number | null): string {
   if (value === null || isNaN(value)) return "0";
   return new Intl.NumberFormat("en-US", {
-    maximumFractionDigits: 6,
+    maximumFractionDigits: 5,
   }).format(value);
 }
 
