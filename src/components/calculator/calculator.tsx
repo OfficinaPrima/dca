@@ -6,11 +6,13 @@ import { formatCurrency, formatNumber, parseNum, cn } from "@/lib/utils";
 import { WarningBanner } from "@/components/calculator/warning-banner";
 import { ResultCard } from "@/components/calculator/result-card";
 import { CoinSearch } from "@/components/calculator/coin-search";
+import { StockSearch } from "@/components/calculator/stock-search";
 
 type TabId = "target" | "budget" | "custom";
 
 export function Calculator() {
   const [activeTab, setActiveTab] = useState<TabId>("target");
+  const [lookup, setLookup] = useState<"crypto" | "stock">("crypto");
 
   // Shared State (UX enhancement: persists across tabs)
   const [shares, setShares] = useState<string>("");
@@ -194,7 +196,27 @@ export function Calculator() {
           
           {/* Top Shared Inputs Section */}
           <div className="p-6 sm:p-8 border-b border-slate-100 bg-slate-50/50">
-            <CoinSearch onPriceUpdate={(p) => setBuyPrice(String(p))} />
+            <div className="flex gap-1.5 mb-3 p-1 bg-slate-100 rounded-xl w-fit">
+              {(["crypto", "stock"] as const).map((m) => (
+                <button
+                  key={m}
+                  onClick={() => setLookup(m)}
+                  className={cn(
+                    "px-4 py-1.5 rounded-lg text-sm font-semibold capitalize transition-colors",
+                    lookup === m
+                      ? "bg-white text-primary shadow-sm"
+                      : "text-slate-500 hover:text-slate-700",
+                  )}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
+            {lookup === "crypto" ? (
+              <CoinSearch onPriceUpdate={(p) => setBuyPrice(String(p))} />
+            ) : (
+              <StockSearch onPriceUpdate={(p) => setBuyPrice(String(p))} />
+            )}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <NumberInput
                 label="Current Shares"

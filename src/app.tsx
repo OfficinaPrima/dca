@@ -1,5 +1,6 @@
 import { Calculator } from "@/components/calculator/calculator";
 import { Portfolio } from "@/components/portfolio/portfolio";
+import { Faq } from "@/components/faq";
 
 export function App() {
   return (
@@ -16,6 +17,14 @@ export function App() {
         </div>
 
         <Calculator />
+        <Faq />
+
+        <footer className="py-10 px-4 text-center text-sm text-slate-400">
+          <p className="max-w-2xl mx-auto">
+            This is a calculator, not financial advice. Averaging down adds to a
+            position that has already lost value and can increase your losses.
+          </p>
+        </footer>
       </div>
     </div>
   );

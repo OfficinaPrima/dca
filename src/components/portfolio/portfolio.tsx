@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { RefreshCw } from "lucide-react";
 import { CsvUpload } from "@/components/portfolio/csv-upload";
 import { AssetCard } from "@/components/portfolio/asset-card";
 import { BestBuy } from "@/components/portfolio/best-buy";
 import { SaveBar } from "@/components/portfolio/save-bar";
+import { getQuote } from "@/lib/finnhub";
+import { cn } from "@/lib/utils";
 import type { Holding } from "@/lib/schwab";
 
 const STORAGE_KEY = "dca-portfolio";
@@ -12,6 +15,8 @@ export function Portfolio() {
   const [holdings, setHoldings] = useState<Holding[] | null>(null);
   const [fileName, setFileName] = useState("");
   const [remember, setRemember] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [pricedAt, setPricedAt] = useState("");
 
   // Restore a remembered portfolio on first load.
   useEffect(() => {
@@ -35,6 +40,34 @@ export function Portfolio() {
     setFileName(name);
     if (remember) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ fileName: name, holdings: h }));
+    }
+  };
+
+  const refreshPrices = async () => {
+    if (!holdings) return;
+    setRefreshing(true);
+    try {
+      const updated = await Promise.all(
+        holdings.map(async (h) => {
+          try {
+            const price = await getQuote(h.symbol);
+            const gainPct =
+              h.avgCost > 0 ? ((price - h.avgCost) / h.avgCost) * 100 : h.gainPct;
+            return { ...h, currentPrice: price, marketValue: price * h.shares, gainPct };
+          } catch {
+            return h; // keep the old price if a symbol fails
+          }
+        }),
+      );
+      setHoldings(updated);
+      setPricedAt(
+        new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
+      );
+      if (remember) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ fileName, holdings: updated }));
+      }
+    } finally {
+      setRefreshing(false);
     }
   };
 
@@ -70,7 +103,7 @@ export function Portfolio() {
           <CsvUpload onLoaded={loadHoldings} />
         ) : (
           <>
-            <div className="flex items-center justify-between gap-3 mb-5 no-print">
+            <div className="flex items-center justify-between gap-3 mb-3 no-print">
               <p className="text-sm text-slate-500 min-w-0 truncate">
                 {holdings.length} holding{holdings.length === 1 ? "" : "s"} from{" "}
                 <span className="font-medium text-slate-700">{fileName}</span>
@@ -81,6 +114,22 @@ export function Portfolio() {
               >
                 Upload a different file
               </button>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 mb-5 no-print">
+              <button
+                onClick={refreshPrices}
+                disabled={refreshing}
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold bg-white border border-slate-200 text-slate-700 hover:border-slate-300 transition-colors disabled:opacity-50"
+              >
+                <RefreshCw className={cn("w-4 h-4", refreshing && "animate-spin")} />
+                {refreshing ? "Refreshing…" : "Refresh prices"}
+              </button>
+              <span className="text-xs text-slate-400">
+                {pricedAt
+                  ? `Live prices as of ${pricedAt} · may be delayed`
+                  : "Prices are from your file — click to pull live quotes"}
+              </span>
             </div>
 
             <SaveBar
