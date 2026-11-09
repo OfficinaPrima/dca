@@ -66,3 +66,14 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* Save as PDF: hide controls and the single calculator, print the portfolio clean. */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    background-image: none !important;
+  }
+}

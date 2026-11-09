@@ -175,7 +175,7 @@ export function Calculator() {
   };
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 flex justify-center items-start">
+    <div className="py-10 px-4 sm:px-6 flex justify-center items-start">
       <div className="w-full max-w-2xl">
         
         <div className="mb-8 text-center sm:text-left">
@@ -183,10 +183,10 @@ export function Calculator() {
             <CalculatorIcon className="w-8 h-8 text-primary" />
           </div>
           <h1 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 mb-3 tracking-tight">
-            DCA Calculator
+            Single Calculator
           </h1>
           <p className="text-lg text-slate-500 max-w-lg">
-            Plan your dollar cost averaging strategy with precision. Enter your current position to get started.
+            One position at a time — type it in, or look up a live crypto price to get started.
           </p>
         </div>
 

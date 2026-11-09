@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import { Calculator } from "@/components/calculator/calculator";
+import { App } from "@/app";
 import "./index.css";
 
-createRoot(document.getElementById("root")!).render(<Calculator />);
+createRoot(document.getElementById("root")!).render(<App />);
